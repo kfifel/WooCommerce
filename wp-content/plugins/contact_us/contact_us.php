@@ -51,28 +51,41 @@ add_action( 'admin_menu', 'contact_us_plugin_menu' );
 // Display the plugin settings page
 function contact_us_plugin_settings_page() {
     ?>
-    <div class="wrap">
-        <h1>Contact Us Plugin</h1>
-        <p>A simple contact us plugin for WordPress.</p>
-        <form method="post" action="<?php echo esc_url( admin_url('admin-post.php') ); ?>">
+    <div class="container">
+        <h1 class="text-center">Contact Us Plugin</h1>
+        <form method="post" action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" class="needs-validation" novalidate>
             <input type="hidden" name="action" value="contact_us_plugin_submit" />
-            <div>
-                <label for="name">Name:</label>
-                <input type="text" name="name" pattern="^[a-zA-Z\s]+$" required />
+            <div class="row">
+                <div class="col-sm-12 col-md-6 mb-3">
+                    <label for="name" class="form-label">Name:</label>
+                    <input type="text" name="name" class="form-control" pattern="^[a-zA-Z\s]+$" required />
+                    <div class="invalid-feedback">Please enter a valid name.</div>
+                </div>
+                <div class="col-sm-12 col-md-6 mb-3">
+                    <label for="email" class="form-label">Email:</label>
+                    <input type="email" name="email" class="form-control" required />
+                    <div class="invalid-feedback">Please enter a valid email address.</div>
+                </div>
             </div>
-            <div>
-                <label for="email">Email:</label>
-                <input type="email" name="email" required />
+            <div class="row">
+                <div class="col-sm-12 col-md-6 mb-3">
+                    <label for="subject" class="form-label">Subject:</label>
+                    <input type="text" name="subject" class="form-control" pattern="^[a-zA-Z0-9\s]+$" required />
+                    <div class="invalid-feedback">Please enter a valid subject.</div>
+                </div>
             </div>
-            <div>
-                <label for="subject">Subject:</label>
-                <input type="text" name="subject" pattern="^[a-zA-Z0-9\s]+$" required />
+            <div class="row">
+                <div class="col-sm-12 mb-3">
+                    <label for="message" class="form-label">Message:</label>
+                    <textarea name="message" class="form-control" required></textarea>
+                    <div class="invalid-feedback">Please enter a message.</div>
+                </div>
             </div>
-            <div>
-                <label for="message">Message:</label>
-                <textarea name="message" required></textarea>
+            <div class="row">
+                <div class="col-sm-12 mb-3">
+                    <button type="submit" class="btn btn-dark w-100 text-white bg-black">Send</button>
+                </div>
             </div>
-            <input type="submit" value="Send" />
         </form>
     </div>
     <?php
